@@ -4,7 +4,7 @@ import {cva, type VariantProps} from "class-variance-authority"
 
 import {cn} from "@/lib/utils"
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
     "inline-flex items-center justify-center gap-2 rounded-lg whitespace-nowrap rounded-md text-sm transition-all hover:cursor-pointer disabled:pointer-events-none [&_svg]:pointer-events-none disabled:cursor-default [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
     {
         variants: {
@@ -15,6 +15,7 @@ const buttonVariants = cva(
                     "bg-white text-gray-900 border-1 border-gray-300 hover:bg-gray-50 hover:border-gray-400 disabled:text-gray-600 disabled:border-gray-200",
                 text:
                     "text-indigo-500 hover:text-indigo-600 disabled:text-gray-600",
+                icon: ''
             },
 
             size: {
@@ -55,7 +56,7 @@ const buttonVariants = cva(
     }
 )
 
-function Button({
+export const Button = ({
                     className,
                     variant,
                     size,
@@ -66,7 +67,7 @@ function Button({
     VariantProps<typeof buttonVariants> & {
     asChild?: boolean,
     destructive?: boolean;
-}) {
+})=> {
     const Comp = asChild ? Slot : "button"
 
     return (
@@ -77,5 +78,3 @@ function Button({
         />
     )
 }
-
-export {Button, buttonVariants}

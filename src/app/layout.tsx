@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 
 import "./globals.css";
+import {SidebarProvider } from "@/shared/ui/Sidebar/sidebar";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+          <SidebarProvider>
+              {children}
+          </SidebarProvider>
       </body>
     </html>
   );
