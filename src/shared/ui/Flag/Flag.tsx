@@ -1,7 +1,11 @@
 import {JSX} from "react";
 import Image from "next/image";
 
-export const Flag = ({src, className}): JSX.Element => {
+interface IProps {
+    src: string;
+    className?: string;
+}
+export const Flag = ({src, className}: IProps): JSX.Element => {
     return(
         <Image
             width={24}
