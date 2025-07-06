@@ -137,7 +137,7 @@ function SidebarProvider({
                         } as React.CSSProperties
                     }
                     className={cn(
-                        "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full",
+                        "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex flex-col min-h-svh w-full",
                         className
                     )}
                     {...props}
@@ -315,12 +315,13 @@ function SidebarInset({className, ...props}: React.ComponentProps<"main">) {
     )
 }
 
-function SidebarHeader({className, ...props}: React.ComponentProps<"div">) {
+function SidebarHeader({className, ...props}: React.ComponentProps<"header">) {
     return (
         <header
             data-slot="sidebar-header"
             data-sidebar="header"
-            className={cn("flex flex-col gap-2 px-[16px] py-[8px]", className)}
+            style={{width: SIDEBAR_WIDTH}}
+            className={cn(`flex gap-2 px-[16px] py-[8px] items-center justify-between`, className)}
             {...props}
         />
     )

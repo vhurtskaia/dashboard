@@ -1,3 +1,5 @@
+'use client'
+
 import {
     Sidebar as SidebarComponent,
     SidebarContent,
@@ -9,11 +11,9 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-    SidebarMenuSub,
-    SidebarMenuSubItem,
 } from "@/shared/ui/Sidebar/sidebar"
 import Link from "next/link";
-import React, {Fragment, JSX} from "react";
+import React, { JSX } from "react";
 import {
     IconEye,
     IconDeviceDesktopAnalytics,
@@ -29,12 +29,10 @@ import {
     IconPlus,
     IconBell,
     IconDotsVertical,
-    IconExternalLink,
     IconChevronRight,
     IconHelp
 } from '@tabler/icons-react';
 
-import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/shared/ui/Collapsible";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/shared/ui/DropdownMenu";
 import Image from "next/image";
 import {Button, Separator} from "@/shared/ui";
@@ -129,77 +127,77 @@ function Aside(): JSX.Element {
                     Buy new proxies
                 </Button>
 
-                {items.map((item, index) => (
-                    <SidebarGroup key={index}>
-                        {item.heading && <SidebarGroupLabel>{item.heading}</SidebarGroupLabel>}
+                    {items.map((item, index) => (
+                        <SidebarGroup key={index}>
+                            {item.heading && <SidebarGroupLabel>{item.heading}</SidebarGroupLabel>}
 
+                            <SidebarGroupContent>
+                                <SidebarMenu>
+                                    {item.data.map((arr, index) => (
+                                        <SidebarMenuItem key={index}>
+                                            <SidebarMenuButton asChild>
+                                                <Link href={arr.url}>
+                                                    {arr.icon}
+                                                    <span className={'w-full subtitle2'}>{arr.title}</span>
+                                                    {arr.rightIcon}
+                                                </Link>
+                                            </SidebarMenuButton>
+                                        </SidebarMenuItem>
+                                    ))}
+                                </SidebarMenu>
+                            </SidebarGroupContent>
+                        </SidebarGroup>
+                    ))}
+
+                    <Separator/>
+
+                    <SidebarGroup>
                         <SidebarGroupContent>
                             <SidebarMenu>
-                                {item.data.map((arr, index) => (
+                                {expandItems.map((item, index) => (
                                     <SidebarMenuItem key={index}>
                                         <SidebarMenuButton asChild>
-                                            <Link href={arr.url}>
-                                                {arr.icon}
-                                                <span className={'w-full subtitle2'}>{arr.title}</span>
-                                                {arr.rightIcon}
-                                            </Link>
+                                            <div>
+                                                {item.icon}
+                                                <span className={'w-full subtitle2'}>{item.title}</span>
+                                                {item.rightIcon}
+                                            </div>
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
                                 ))}
                             </SidebarMenu>
                         </SidebarGroupContent>
                     </SidebarGroup>
-                ))}
+                </SidebarContent>
 
                 <Separator/>
 
-                <SidebarGroup>
-                    <SidebarGroupContent>
-                        <SidebarMenu>
-                            {expandItems.map((item, index) => (
-                                <SidebarMenuItem key={index}>
-                                    <SidebarMenuButton asChild>
-                                        <div>
-                                            {item.icon}
-                                            <span className={'w-full subtitle2'}>{item.title}</span>
-                                            {item.rightIcon}
-                                        </div>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
-                        </SidebarMenu>
-                    </SidebarGroupContent>
-                </SidebarGroup>
-            </SidebarContent>
+                <SidebarFooter>
+                    <div className={'flex flex-col'}>
+                        <span className="subtitle2 text-gray-800">Henry Smith</span>
+                        <span className="body2 text-gray-600">henry.smith@gmail.com</span>
+                    </div>
 
-            <Separator/>
-
-            <SidebarFooter>
-                <div className={'flex flex-col'}>
-                    <span className="subtitle2 text-gray-800">Henry Smith</span>
-                    <span className="body2 text-gray-600">henry.smith@gmail.com</span>
-                </div>
-
-                <DropdownMenu>
-                    <DropdownMenuTrigger className={'p-0 m-0 w-[20px] h-[20px]'} asChild>
-                        <SidebarMenuButton>
-                            <IconDotsVertical strokeWidth={1.25}/>
-                        </SidebarMenuButton>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                        side="top"
-                        className="w-[--radix-popper-anchor-width]"
-                    >
-                        <DropdownMenuItem>
-                            <span>Account</span>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <span>Log Out</span>
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            </SidebarFooter>
-        </SidebarComponent>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger className={'p-0 m-0 w-[20px] h-[20px]'} asChild>
+                            <SidebarMenuButton>
+                                <IconDotsVertical strokeWidth={1.25}/>
+                            </SidebarMenuButton>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                            side="top"
+                            className="w-[--radix-popper-anchor-width]"
+                        >
+                            <DropdownMenuItem>
+                                <span>Account</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <span>Log Out</span>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </SidebarFooter>
+            </SidebarComponent>
     )
 }
 
