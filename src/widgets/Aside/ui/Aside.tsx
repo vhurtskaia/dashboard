@@ -57,7 +57,7 @@ export const Aside = (): JSX.Element => {
                 </button>
             </div>
 
-            <div className={'flex min-h-0 p-[16px] flex-1 flex-col gap-[16px] overflow-auto'}>
+            <div className={'flex flex-col gap-[16px] min-h-0 p-[16px] overflow-auto'}>
                 <AsideHeader/>
 
                 {asideItems.map((item, index) => (
