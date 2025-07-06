@@ -1,13 +1,11 @@
-import type { Metadata } from "next";
+"use client"
+
 import React from "react";
 
-import "./globals.css";
-import {SidebarProvider } from "@/shared/ui/Sidebar/sidebar";
+import { store } from '@/shared/store'
+import { Provider } from 'react-redux'
 
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Test task front-end dev",
-};
+import "./globals.css";
 
 export default function RootLayout({
   children,
@@ -17,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-          <SidebarProvider>
+          <Provider store={store}>
               {children}
-          </SidebarProvider>
+          </Provider>
       </body>
     </html>
   );

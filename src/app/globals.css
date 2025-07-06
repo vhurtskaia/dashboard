@@ -131,115 +131,11 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
-    --background: oklch(1 0 0);
+    --background:  #FAFAFA;
     --foreground: oklch(0.145 0 0);
 }
 
-body {
-    background: var(--base-white);
-    color: var(--base-black);
-    font-family: SpaceGrotesk;
-    line-height: 20px;
-    font-weight: 500;
-}
-
-h1 {
-    font-size: 48px;
-    line-height: 56px;
-    font-weight: 400;
-    letter-spacing: -1px;
-}
-
-h2 {
-    font-size: 40px;
-    line-height: 48px;
-    font-weight: 400;
-    letter-spacing: -0.5px;
-}
-
-h3 {
-    font-size: 32px;
-    line-height: 40px;
-    font-weight: 400;
-}
-
-h4 {
-    font-size: 24px;
-    line-height: 32px;
-    font-weight: 600;
-}
-
-h5 {
-    font-size: 20px;
-    line-height: 28px;
-    font-weight: 600;
-}
-
-h5 {
-    font-size: 18px;
-    line-height: 24px;
-    font-weight: 600;
-}
-
-.subtitle1 {
-    font-size: 18px;
-    line-height: 24px;
-    font-weight: 600;
-    letter-spacing: 0.2px;
-}
-
-.subtitle2 {
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 600;
-    letter-spacing: 0.2px;
-}
-
-caption {
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: 400;
-    letter-spacing: 0.2px;
-}
-
-.overline-text{
-    font-size: 12px;
-    line-height: 20px;
-    font-weight: 600;
-    letter-spacing: 0.7px;
-    text-transform: uppercase;
-}
-
-[data-counter]:not([data-counter="0"]):not([data-counter=""]) {
-    position: relative;
-    margin-right: 10px;
-}
-
-[data-counter]::after {
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: 400;
-    letter-spacing: 0.2px;
-    content: attr(data-counter);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 18px;
-    background-color: var(--brand-400);
-    color: var(--base-white);
-    border-radius: 20px;
-    position: absolute;
-    top: -4px;
-    right: -12px;
-    border: 2px solid var(--base-white);
-}
-
 @theme default {
-    --radius-sm: calc(var(--radius) - 4px);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) + 4px);
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --color-card: var(--card);
@@ -360,4 +256,124 @@ caption {
     body {
         @apply bg-background text-foreground;
     }
+}
+
+body {
+    background: var(--background);
+    color: var(--base-black);
+    font-family: SpaceGrotesk;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+aside{
+    background: var(--base-white);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 280px;
+    transition: left 0.2s ease-in-out;
+    &.open{
+        left: 0;
+    }
+
+    @media (max-width: 768px) {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        z-index: 1;
+    }
+}
+
+h1 {
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 400;
+    letter-spacing: -1px;
+}
+
+h2 {
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+}
+
+h3 {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 400;
+}
+
+h4 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+}
+
+h5 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+}
+
+h5 {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+.subtitle1 {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.subtitle2 {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+caption {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}
+
+.overline-text{
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+[data-counter]:not([data-counter="0"]):not([data-counter=""]) {
+    position: relative;
+    margin-right: 10px;
+}
+
+[data-counter]::after {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    content: attr(data-counter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 18px;
+    background-color: var(--brand-400);
+    color: var(--base-white);
+    border-radius: 20px;
+    position: absolute;
+    top: -4px;
+    right: -12px;
+    border: 2px solid var(--base-white);
 }
