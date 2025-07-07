@@ -1,16 +1,29 @@
+'use client'
+
 import Image from "next/image";
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
-    AccordionTrigger,
-    Container,
-    Table, TableBody,
-    TableCaption, TableCell, TableHead, TableHeader, TableRow
+    AccordionTrigger, Button,
+    Container, Input, Label,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow
 } from "@/shared/ui";
 import React, {JSX} from "react";
+import {Slider} from "@/shared/ui/Slider";
+import {IconEdit} from "@tabler/icons-react";
+import {cn} from "@/lib/utils";
 
 export const Proxies = (): JSX.Element => {
+    const digits = [10, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+
+    const [customQuantity, setCustomQuantity] = React.useState<boolean>(false)
+
     return (
         <Container className={'gap-6'}>
             <div className="flex gap-[16px]">
@@ -57,6 +70,40 @@ export const Proxies = (): JSX.Element => {
                     </AccordionItem>
                 </Accordion>
             </div>
+
+            <div
+                // className={'flex flex-col pb-[8px] pt-[40px] gap-[12px]'}
+                className={cn(
+                    "flex flex-col gap-[12px]",
+                    !customQuantity ? 'pt-[40px] pb-[8px]' : 'gap-[4px]'
+                )}
+            >
+                {customQuantity ? (
+                    <>
+                        <Label htmlFor="quantity">Custom quantity</Label>
+                        <Input id={'quantity'} type={'number'} max={1000} min={1} value={1}/>
+                    </>
+                    ) : (
+                    <>
+                        <Slider max={1000} step={1}/>
+                        <div className={'flex gap-[6px] justify-between'}>
+                            {digits.map((digit, index) => (
+                                <span key={index} className={'body2 text-gray-500 text-[12px] md:text-[14px]'}>{digit}</span>
+                            ))}
+                        </div>
+                    </>
+                )}
+            </div>
+
+            <Button variant={'outlined'} size={'medium'} className={'text-indigo-500 w-max'}
+                    onClick={() => setCustomQuantity(!customQuantity)}>
+                {customQuantity ? (<>
+                    <IconEdit strokeWidth={1.25} className={'size-[16px]'}/>
+                    Enter a custom quantity
+                </>) : <>
+                    Select from the range
+                </>}
+            </Button>
         </Container>
     )
 }

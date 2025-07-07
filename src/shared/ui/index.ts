@@ -6,5 +6,7 @@ export * from './Container';
 export * from './DropdownMenu';
 export * from './Flag';
 export * from './Input';
+export * from './Label';
 export * from './Separator';
 export * from './Table';
+export * from './Tooltip';

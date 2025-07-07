@@ -20,7 +20,7 @@ export const buttonVariants = cva(
 
             size: {
                 small: "py-1 px-3 rounded-md gap-1.5 px-3",
-                medium: "py-2 px-4",
+                medium: "py-[6px] px-[16px]",
                 large: "py-1.5 px-4 text-base",
             },
 
