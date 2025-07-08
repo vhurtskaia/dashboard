@@ -1,0 +1,1 @@
+export {TextWithCheckIcon} from './TextWithCheckIcon';
