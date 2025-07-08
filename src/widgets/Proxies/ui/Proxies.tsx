@@ -30,7 +30,7 @@ import {
 import {Slider} from "@/shared/ui/Slider";
 import {IconEdit} from "@tabler/icons-react";
 import {cn} from "@/shared/lib/utils";
-import {useAppDispatch, useAppSelector} from "@/shared/store/hooks";
+import {useAppDispatch} from "@/shared/store/hooks";
 import {setLocation, setPeriod, setQuantity} from "@/widgets/Summary/model/summarySlice";
 
 export const Proxies = (): JSX.Element => {
