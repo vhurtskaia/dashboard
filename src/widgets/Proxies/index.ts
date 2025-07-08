@@ -1,1 +1,1 @@
-import {Proxies} from './ui/Proxies';
+export * from './ui/Proxies';
