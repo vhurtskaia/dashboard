@@ -266,6 +266,33 @@ body {
     font-weight: 500;
 }
 
+main{
+    width: 100%;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @media (min-width: 768px) {
+        padding: 24px 32px;
+        gap: 20px;
+    }
+
+    @media (min-width: 1280px) {
+        padding: 24px 48px;
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 24px;
+
+        & > div{
+            grid-column: 1/2;
+        }
+
+        &:nth-child(3){
+            grid-column: 2/3;
+        }
+    }
+}
+
 aside{
     background: var(--base-white);
     display: flex;
@@ -318,7 +345,7 @@ h5 {
     font-weight: 600;
 }
 
-h5 {
+h6 {
     font-size: 18px;
     line-height: 24px;
     font-weight: 600;
@@ -363,6 +390,43 @@ caption {
     font-weight: 600;
     letter-spacing: 0.7px;
     text-transform: uppercase;
+}
+
+input[type="radio"]{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--color-gray-300);
+    border-radius: 50%;
+    background-color: var(--base-white);
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    &:after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--base-white);
+        width: 6px;
+        height: 6px;
+        scale: 0;
+    }
+    &:checked{
+        background-color: var(--brand-500);
+        &:after{
+            scale: 1;
+        }
+        & + label{
+                background-color: var(--brand-50);
+                border-color: var(--brand-500);
+        }
+    }
 }
 
 [data-counter]:not([data-counter="0"]):not([data-counter=""]) {
