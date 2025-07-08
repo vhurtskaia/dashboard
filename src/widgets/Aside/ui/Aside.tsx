@@ -10,7 +10,7 @@ import {AsideFooter} from "@/widgets/Aside/ui/AsideFooter";
 import {useAppDispatch, useAppSelector} from "@/shared/store/hooks";
 import {toggleMenu} from "@/widgets/Header/model/headerSlice";
 import {IconX} from "@tabler/icons-react";
-import {cn} from "@/lib/utils";
+import {cn} from "@/shared/lib/utils";
 
 export const Aside = (): JSX.Element => {
     const dispatch = useAppDispatch()

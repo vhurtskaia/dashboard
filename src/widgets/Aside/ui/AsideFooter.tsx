@@ -12,7 +12,7 @@ export const AsideFooter = () => {
         <>
             <Separator className={'mt-auto'}/>
 
-            <footer className={"flex items-center justify-between gap-[8px] px-[16px] py-[8px]"}>
+            <footer className={"sticky bottom-0 bg-white flex items-center justify-between gap-[8px] px-[16px] py-[8px]"}>
                 <div className={'flex flex-col'}>
                     <span className="subtitle2 text-gray-800">Henry Smith</span>
                     <span className="body2 text-gray-600">henry.smith@gmail.com</span>
