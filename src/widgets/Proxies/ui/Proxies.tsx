@@ -1,7 +1,8 @@
 'use client'
 
 import Image from "next/image";
-import React, {JSX} from "react";
+import React, {JSX, useEffect, useState} from "react";
+import debounce from 'lodash.debounce';
 
 import {
     Accordion,
@@ -30,7 +31,7 @@ import {
 import {Slider} from "@/shared/ui/Slider";
 import {IconEdit} from "@tabler/icons-react";
 import {cn} from "@/shared/lib/utils";
-import {useAppDispatch} from "@/shared/store/hooks";
+import {useAppDispatch, useAppSelector} from "@/shared/store/hooks";
 import {setLocation, setPeriod, setQuantity} from "@/widgets/Summary/model/summarySlice";
 
 export const Proxies = (): JSX.Element => {
@@ -49,6 +50,35 @@ export const Proxies = (): JSX.Element => {
         code: 'us'
     }]
     const dispatch = useAppDispatch()
+    const quantity = useAppSelector((state) => state.summary.quantity);
+
+    const [inputValue, setInputValue] = useState(String(quantity));
+
+    const validateAndSetQuantity = (value: string) => {
+        const numValue = Number(value);
+
+        if (value === '' || isNaN(numValue)) {
+            dispatch(setQuantity(10))
+            setInputValue('10');
+        } else if (numValue < 10) {
+            dispatch(setQuantity(10))
+            setInputValue('10');
+        } else if (numValue > 1000) {
+            dispatch(setQuantity(1000));
+            setInputValue('1000');
+        } else {
+            dispatch(setQuantity(numValue));
+            setInputValue(String(numValue));
+        }
+    };
+
+    const debouncedValidation = debounce(validateAndSetQuantity, 1000);
+
+    useEffect(() => {
+        return () => {
+            debouncedValidation.cancel();
+        };
+    }, []);
 
     return (
         <Container className={'gap-6'}>
@@ -104,11 +134,12 @@ export const Proxies = (): JSX.Element => {
             >
                 {customQuantity ? (<>
                     <Label htmlFor="quantity">Custom quantity</Label>
-                    <Input onChange={(e) => {
-                                console.log(e.target.value)
-                            dispatch(setQuantity(+e.target.value))
-                        }}
-                        id={'quantity'} type={'number'} max={1000} min={10}
+                    <Input value={inputValue} onChange={(e) => {
+                        const newValue = e.target.value
+                        setInputValue(newValue)
+                        debouncedValidation(newValue)
+                    }}
+                           id={'quantity'} type={'number'} max={1000} min={10}
                     />
                 </>) : (<>
                     <Slider max={1000} min={10} step={1}/>
@@ -134,13 +165,13 @@ export const Proxies = (): JSX.Element => {
             <div className="flex flex-col gap-[8px]">
                 <Label htmlFor="1">Select subscription cycle</Label>
                 <Radio id={'1'} value={1}
-                       onChange={(e) => dispatch(setPeriod(+e.target.value)) }
+                       onChange={(e) => dispatch(setPeriod(+e.target.value))}
                        name={'monts'} defaultChecked>1 month</Radio>
                 <Radio id={'3'} value={3}
-                       onChange={(e) => dispatch(setPeriod(+e.target.value)) }
+                       onChange={(e) => dispatch(setPeriod(+e.target.value))}
                        name={'monts'}>3 months</Radio>
                 <Radio id={'12'} value={12} name={'monts'}
-                       onChange={(e) => dispatch(setPeriod(+e.target.value)) }
+                       onChange={(e) => dispatch(setPeriod(+e.target.value))}
                 >
                     12 months
                     <Badge size={'small'} variant={'success'}>Save 20%</Badge>
